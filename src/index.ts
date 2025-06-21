@@ -8,6 +8,10 @@ class Product {
   id: number;
   name: string;
   price: number;
+
+  static findProductsBelow(precioMax: number): Product[]{
+    return products.filter(product => product.price <precioMax);
+  }
 }
 
 class User {
@@ -20,9 +24,10 @@ class User {
     this.products.push(newProduct);
   }
   addProducts(newProducts: Product[]) {
-    // esto no funciona:
-    this.products.push(newProducts);
-    // pista: push no suma muchos items (agrega de a uno)
+
+    for (const product of newProducts)
+      this.products.push(product);
+   
   }
 }
 
